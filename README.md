@@ -2,9 +2,12 @@
 
 ### Laravel, Inertia, Breeze and Vue Admin Backend
 
--   Dark Mode Toggle
--   Side navigation with transition
--   Separate admin and web route
--   Separate tailwind css config
--   Heroicons
--   Headless UI
+-   [x] Separate tailwind css config
+-   [x] Separate admin and web route
+-   [x] Side navigation with transition
+-   [x] Dark Mode Toggle
+-   [x] Heroicons
+-   [x] Headless UI
+-   [x] Trix editor with file upload and delete
+-   [ ] Dropzone
+-   [ ] Intervention Image
