@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\TrixFileUploadController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,4 +17,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
+
+    Route::post('trix', [TrixFileUploadController::class, 'store'])->name('trix.store');
+    Route::post('trix/delete', [TrixFileUploadController::class, 'destroy'])->name('trix.destroy');
 });

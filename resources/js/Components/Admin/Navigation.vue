@@ -81,7 +81,7 @@ const navItems = [
 
 <template>
     <div
-        class="h-full max-h-[calc(100vh-65px)] overflow-y-auto px-4 py-6 shadow-md shadow-gray-300 dark:shadow-gray-800"
+        class="sticky top-[65px] h-full max-h-[calc(100vh-65px)] w-full overflow-y-auto px-4 py-6"
     >
         <ul>
             <li v-for="item in navItems" :key="item.label">

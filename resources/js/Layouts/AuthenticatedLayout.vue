@@ -3,9 +3,13 @@ import { ref } from 'vue'
 import Dropdown from '@/Components/Admin/Dropdown.vue'
 import DropdownLink from '@/Components/Admin/DropdownLink.vue'
 import Navigation from '@/Components/Admin/Navigation.vue'
-import { Link } from '@inertiajs/vue3'
+import { Link, Head } from '@inertiajs/vue3'
 import { SunIcon, MoonIcon } from '@heroicons/vue/24/solid'
 import { useDark, useToggle } from '@vueuse/core'
+
+defineProps({
+    title: String,
+})
 
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
@@ -15,24 +19,26 @@ const showingNavigation = ref(false)
 
 <template>
     <div>
-        <div class="relative min-h-screen bg-white dark:bg-gray-900">
+        <Head :title="title" />
+
+        <div class="relative min-h-screen bg-white dark:bg-gray-950">
             <div
-                class="absolute inset-0 z-10 cursor-pointer bg-black bg-opacity-50 md:hidden"
+                class="absolute inset-0 z-40 cursor-pointer bg-black bg-opacity-50 lg:hidden"
                 v-if="showingNavigation"
                 @click="showingNavigation = !showingNavigation"
             ></div>
             <!-- Page Content -->
-            <div class="flex">
+            <div class="lg:flex">
                 <div
                     :class="[
-                        'fixed left-0 top-0 z-20 min-h-screen w-80 -translate-x-full transform bg-white transition duration-200 dark:bg-gray-800 md:relative md:translate-x-0 md:bg-transparent dark:md:bg-transparent',
+                        'fixed inset-y-0 left-0 z-50 min-h-screen w-80 -translate-x-full transform bg-white transition duration-200 dark:bg-gray-950 lg:sticky lg:translate-x-0 lg:bg-transparent dark:lg:bg-transparent',
                         showingNavigation
                             ? 'translate-x-0'
                             : '-translate-x-full',
                     ]"
                 >
                     <div
-                        class="border-b border-gray-100 bg-white dark:border-gray-700 dark:bg-gray-800"
+                        class="sticky top-0 z-50 border-b border-gray-100 bg-white dark:border-gray-700 dark:bg-gray-900"
                     >
                         <div
                             class="mx-auto flex h-16 items-center justify-between px-4 md:px-6 lg:px-8"
@@ -47,12 +53,12 @@ const showingNavigation = ref(false)
                                 </Link>
                             </div>
                             <!-- Hamburger -->
-                            <div class="flex items-center md:hidden">
+                            <div class="flex items-center lg:hidden">
                                 <button
                                     @click="
                                         showingNavigation = !showingNavigation
                                     "
-                                    class="inline-flex items-center justify-center rounded-md p-1 text-gray-400 transition duration-150 ease-in-out hover:bg-gray-100 hover:text-gray-500 focus:bg-gray-100 focus:text-gray-500 focus:outline-none dark:text-gray-500 dark:hover:bg-gray-900 dark:hover:text-gray-400 dark:focus:bg-gray-900 dark:focus:text-gray-400"
+                                    class="inline-flex items-center justify-center rounded-md p-1 text-gray-400 transition duration-150 ease-in-out hover:bg-gray-100 hover:text-gray-500 focus:bg-gray-100 focus:text-gray-500 focus:outline-none dark:text-gray-500 dark:hover:bg-gray-950 dark:hover:text-gray-400 dark:focus:bg-gray-950 dark:focus:text-gray-400"
                                 >
                                     <svg
                                         class="h-6 w-6"
@@ -76,18 +82,18 @@ const showingNavigation = ref(false)
                     <Navigation />
                 </div>
 
-                <div class="flex-1">
+                <div class="lg:flex-1">
                     <div
-                        class="flex items-center justify-between border-b border-gray-100 bg-white px-2 dark:border-gray-700 dark:bg-gray-800 md:px-6 lg:px-8"
+                        class="sticky top-0 z-30 flex items-center justify-between border-b border-gray-100 bg-white px-2 dark:border-gray-700 dark:bg-gray-900 md:px-6 lg:px-8"
                     >
                         <div class="flex items-center">
                             <!-- Hamburger -->
-                            <div class="flex items-center md:hidden">
+                            <div class="flex items-center lg:hidden">
                                 <button
                                     @click="
                                         showingNavigation = !showingNavigation
                                     "
-                                    class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 transition duration-150 ease-in-out hover:bg-gray-100 hover:text-gray-500 focus:bg-gray-100 focus:text-gray-500 focus:outline-none dark:text-gray-500 dark:hover:bg-gray-900 dark:hover:text-gray-400 dark:focus:bg-gray-900 dark:focus:text-gray-400"
+                                    class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 transition duration-150 ease-in-out hover:bg-gray-100 hover:text-gray-500 focus:bg-gray-100 focus:text-gray-500 focus:outline-none dark:text-gray-500 dark:hover:bg-gray-950 dark:hover:text-gray-400 dark:focus:bg-gray-950 dark:focus:text-gray-400"
                                 >
                                     <svg
                                         class="h-6 w-6"
@@ -114,7 +120,7 @@ const showingNavigation = ref(false)
                                         <span class="inline-flex rounded-md">
                                             <button
                                                 type="button"
-                                                class="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none dark:bg-gray-800 dark:text-gray-400 dark:hover:text-gray-300"
+                                                class="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none dark:bg-gray-900 dark:text-gray-400 dark:hover:text-gray-300"
                                             >
                                                 {{ $page.props.auth.user.name }}
 
@@ -151,9 +157,9 @@ const showingNavigation = ref(false)
                                         >
                                             <button
                                                 type="button"
-                                                class="flex w-1/2 items-center justify-center rounded py-2 text-gray-400 hover:bg-gray-100 disabled:cursor-pointer dark:hover:bg-gray-800"
+                                                class="flex w-1/2 items-center justify-center rounded py-2 text-gray-400 hover:bg-gray-100 disabled:cursor-pointer dark:hover:bg-gray-900"
                                                 :class="{
-                                                    'bg-gray-100 text-blue-400 dark:bg-gray-800':
+                                                    'bg-gray-100 text-blue-400 dark:bg-gray-900':
                                                         !isDark,
                                                 }"
                                                 @click="toggleDark()"
@@ -163,9 +169,9 @@ const showingNavigation = ref(false)
                                             </button>
                                             <button
                                                 type="button"
-                                                class="flex w-1/2 items-center justify-center rounded py-2 text-gray-400 hover:bg-gray-100 disabled:cursor-pointer dark:hover:bg-gray-800"
+                                                class="flex w-1/2 items-center justify-center rounded py-2 text-gray-400 hover:bg-gray-100 disabled:cursor-pointer dark:hover:bg-gray-900"
                                                 :class="{
-                                                    'bg-gray-100 text-blue-400 dark:bg-gray-800':
+                                                    'bg-gray-100 text-blue-400 dark:bg-gray-900':
                                                         isDark,
                                                 }"
                                                 @click="toggleDark()"

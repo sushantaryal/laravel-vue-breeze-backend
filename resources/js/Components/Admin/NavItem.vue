@@ -22,9 +22,9 @@ const hasActiveChild = computed(() => {
         <template v-if="!item.children.length">
             <Link
                 :class="[
-                    'group mb-0.5 flex items-center rounded p-2 text-sm font-semibold hover:bg-gray-100 dark:hover:bg-gray-700',
+                    'group mb-0.5 flex items-center rounded p-2 text-sm font-semibold hover:bg-gray-100 dark:hover:bg-gray-900',
                     item.active
-                        ? 'text-primary-600 dark:text-primary-400 bg-gray-100 font-semibold dark:bg-gray-700'
+                        ? 'text-primary-600 dark:text-primary-400 bg-gray-100 font-semibold dark:bg-gray-900'
                         : 'text-gray-600 dark:text-white',
                 ]"
                 :href="item.href"

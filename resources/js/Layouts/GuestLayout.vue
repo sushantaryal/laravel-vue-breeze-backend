@@ -1,6 +1,8 @@
 <script setup>
 import ApplicationLogo from '@/Components/Admin/ApplicationLogo.vue'
 import { Link } from '@inertiajs/vue3'
+import { useDark } from '@vueuse/core'
+useDark()
 </script>
 
 <template>
