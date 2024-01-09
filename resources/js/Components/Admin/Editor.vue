@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, computed, ref, watch } from 'vue'
-import { usePage, router } from '@inertiajs/vue3'
+import { usePage } from '@inertiajs/vue3'
 import Trix from 'trix'
 
 import 'trix/dist/trix.css'
@@ -184,7 +184,7 @@ const deleteAttachment = (event) => {
         />
         <trix-editor
             ref="input"
-            class="trix-editor prose max-w-full"
+            class="trix-editor prose dark:prose-invert max-w-full"
             :input="computedId"
             :placeholder="placeholder"
             @trix-attachment-add="uploadAttachment"
@@ -245,7 +245,7 @@ const deleteAttachment = (event) => {
 }
 
 .trix-button--icon-underline::before {
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512"><path d="M16 64c0-17.7 14.3-32 32-32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H128V224c0 53 43 96 96 96s96-43 96-96V96H304c-17.7 0-32-14.3-32-32s14.3-32 32-32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H384V224c0 88.4-71.6 160-160 160s-160-71.6-160-160V96H48C30.3 96 16 81.7 16 64zM0 448c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32z"/></svg>');
+    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0nMS4wJyBlbmNvZGluZz0naXNvLTg4NTktMSc/Pgo8IS0tIFVwbG9hZGVkIHRvOiBTVkcgUmVwbywgd3d3LnN2Z3JlcG8uY29tLCBHZW5lcmF0b3I6IFNWRyBSZXBvIE1peGVyIFRvb2xzIC0tPgo8c3ZnIGZpbGw9IiMwMDAwMDAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMjMwIDIzMCIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIzMCAyMzAiPgogIDxnPgogICAgPHBhdGggZD0iTTYxLjYzOCwxNjQuMTY1Qzc1LjIzNiwxNzUuMzksOTMuMjU3LDE4MSwxMTUuNDU4LDE4MWMyMS45NTUsMCwzOS42NzktNS42MSw1My4yMzktMTYuODM1ICAgQzE4Mi4yNTQsMTUyLjk0MiwxODksMTM3LjEzLDE4OSwxMTYuNzMxVjBoLTQydjExNi43MzFjMCwxMS4wNi0yLjUwMSwxOS4yMTItOC4wMywyNC40NTRjLTUuNTI5LDUuMjQ0LTEzLjI4NCw3Ljg2NC0yMy41MjQsNy44NjQgICBjLTEwLjMyMiwwLTE4LjMxMi0yLjY0Mi0yMy45NjUtNy45MjZDODUuODI5LDEzNS44NDEsODMsMTI3LjcxMSw4MywxMTYuNzMxVjBINDF2MTE2LjczMUM0MSwxMzcuMTMsNDguMDM5LDE1Mi45NDIsNjEuNjM4LDE2NC4xNjUgICB6Ii8+CiAgICA8cmVjdCB3aWR0aD0iMjMwIiB5PSIxOTciIGhlaWdodD0iMzMiLz4KICA8L2c+Cjwvc3ZnPg==');
     height: 18px;
     width: 18px;
     margin: auto auto;
