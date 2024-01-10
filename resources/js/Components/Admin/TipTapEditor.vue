@@ -52,7 +52,7 @@ const linkmodal = ref(null)
 const openingLink = ref(false)
 const anchor = ref({
     href: '',
-    target: null
+    target: false
 })
 
 onClickOutside(linkmodal, (event) => closeLinkPopup())
@@ -62,13 +62,13 @@ const openLinkPopup = () => {
     if (editor.value.getAttributes('link').href) {
         anchor.value = {
             href: editor.value.getAttributes('link').href,
-            target: editor.value.getAttributes('link').target,
+            target: editor.value.getAttributes('link').target == '_blank' ? true : false,
         }
     }
 }
 const closeLinkPopup = () => {
     openingLink.value = false
-    anchor.value = {href: '', target: null}
+    anchor.value = {href: '', target: false}
 }
 const setLink = () => {
     if (anchor.value.href === null) {
@@ -82,6 +82,8 @@ const setLink = () => {
 
         return
     }
+
+    anchor.value.target = anchor.value.target ? '_blank': null
 
     editor.value
         .chain()
@@ -356,7 +358,7 @@ const uploadImage = (e) => {
             ref="linkmodal"
             class="absolute left-0 top-12 z-10 w-full max-w-xl transform rounded border bg-gray-50 p-2 drop-shadow-lg shadow-lg dark:border-gray-900 dark:bg-gray-800"
             v-if="openingLink">
-            <div class="flex flex-col space-y-1">
+            <div class="flex flex-col">
                 <label for="anchorlink" class="text-sm">URL</label>
                 <input
                     type="text"
@@ -366,13 +368,12 @@ const uploadImage = (e) => {
                     placeholder="Enter a URL..."
                     @keydown.enter.prevent="setLink"
                 />
-                <label for="anchortarget" class="text-sm">Open link in...</label>
-                <select id="anchortarget" v-model="anchor.target" class="p-1.5 text-sm w-1/2 rounded border-gray-300 dark:bg-gray-700 dark:border-gray-700 focus:border-gray-300 focus:ring-0 focus:outline-none">
-                    <option :value="null">Current Window</option>
-                    <option value="_blank">New Window</option>
-                </select>
+                <label class="inline-block text-sm mt-2">
+                    <input type="checkbox" v-model="anchor.target" class="rounded" />
+                    Open link in new tab
+                </label>
             </div>
-            <div class="mt-2 flex items-center space-x-2">
+            <div class="mt-4 flex items-center space-x-2">
                 <button
                     type="button"
                     @click="setLink"
