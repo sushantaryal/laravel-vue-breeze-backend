@@ -1,4 +1,5 @@
 <script setup>
+import ActionCard from '@/Components/Admin/ActionCard.vue'
 import DangerButton from '@/Components/Admin/DangerButton.vue'
 import InputError from '@/Components/Admin/InputError.vue'
 import InputLabel from '@/Components/Admin/InputLabel.vue'
@@ -38,20 +39,20 @@ const closeModal = () => {
 </script>
 
 <template>
-    <section class="space-y-6">
-        <header>
-            <h2 class="text-lg font-medium text-gray-950 dark:text-gray-100">
-                Delete Account
-            </h2>
+    <section>
+        <ActionCard>
+            <template #title>Delete Account</template>
+            <template #subtitle
+                >Once your account is deleted, all of its resources and data
+                will be permanently deleted. Before deleting your account,
+                please download any data or information that you wish to
+                retain.</template
+            >
 
-            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                Once your account is deleted, all of its resources and data will
-                be permanently deleted. Before deleting your account, please
-                download any data or information that you wish to retain.
-            </p>
-        </header>
-
-        <DangerButton @click="confirmUserDeletion">Delete Account</DangerButton>
+            <DangerButton @click="confirmUserDeletion"
+                >Delete Account</DangerButton
+            >
+        </ActionCard>
 
         <Modal :show="confirmingUserDeletion" @close="closeModal">
             <div class="p-6">

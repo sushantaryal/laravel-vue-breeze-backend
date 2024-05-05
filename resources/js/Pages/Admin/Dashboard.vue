@@ -26,24 +26,20 @@ const description = ref('<p>This is default content</p>')
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <ActionCard class="mb-4">
                     <template #title> Editor Panel </template>
-                    <template #content>
-                        <div class="text-gray-900 dark:text-gray-100">
-                            <p>TipTap Editor</p>
-                            <TipTapEditor v-model="description" class="mt-1" />
-                        </div>
-                    </template>
+                    <div class="text-gray-900 dark:text-gray-100">
+                        <p>TipTap Editor</p>
+                        <TipTapEditor v-model="description" class="mt-1" />
+                    </div>
                 </ActionCard>
                 <ActionCard
                     :defaultOpen="true"
                     :collapsible="true"
                     class="mb-4"
                 >
-                    <template #title> Editor Panel </template>
-                    <template #content>
-                        <div class="text-gray-900 dark:text-gray-100">
-                            <p>TipTap Editor</p>
-                        </div>
-                    </template>
+                    <template #title>Editor Panel</template>
+                    <div class="text-gray-900 dark:text-gray-100">
+                        <p>TipTap Editor</p>
+                    </div>
                 </ActionCard>
             </div>
         </div>
