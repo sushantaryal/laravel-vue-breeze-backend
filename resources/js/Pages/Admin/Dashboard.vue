@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
 import { Head } from '@inertiajs/vue3'
+import ActionCard from '@/Components/Admin/ActionCard.vue'
 // import Editor from '@/Components/Admin/Editor.vue'
 // import QuillEditor from '@/Components/Admin/QuillEditor.vue'
 import TipTapEditor from '@/Components/Admin/TipTapEditor.vue'
@@ -23,24 +24,27 @@ const description = ref('<p>This is default content</p>')
 
         <div class="pb-4 md:pb-8">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div
-                    class="overflow-hidden rounded bg-white shadow-sm border border-gray-200 dark:border-gray-800 dark:bg-gray-900 sm:rounded-lg"
-                >
-                    <div class="space-y-6 p-6 text-gray-900 dark:text-gray-100">
-                        <!-- <div>
-                            <p>Trix Editor</p>
-                            <Editor v-model="description" class="mt-1" />
-                        </div> -->
-                        <!-- <div>
-                            <p>Quill Editor</p>
-                            <QuillEditor v-model="description" class="mt-1" />
-                        </div> -->
-                        <div>
+                <ActionCard class="mb-4">
+                    <template #title> Editor Panel </template>
+                    <template #content>
+                        <div class="text-gray-900 dark:text-gray-100">
                             <p>TipTap Editor</p>
                             <TipTapEditor v-model="description" class="mt-1" />
                         </div>
-                    </div>
-                </div>
+                    </template>
+                </ActionCard>
+                <ActionCard
+                    :defaultOpen="true"
+                    :collapsible="true"
+                    class="mb-4"
+                >
+                    <template #title> Editor Panel </template>
+                    <template #content>
+                        <div class="text-gray-900 dark:text-gray-100">
+                            <p>TipTap Editor</p>
+                        </div>
+                    </template>
+                </ActionCard>
             </div>
         </div>
     </AuthenticatedLayout>

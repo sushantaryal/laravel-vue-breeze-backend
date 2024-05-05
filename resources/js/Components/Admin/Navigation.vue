@@ -36,7 +36,7 @@ const navItems = [
             },
             {
                 href: '#',
-                active: true,
+                active: false,
                 label: 'Countries',
                 show: true,
                 children: [],

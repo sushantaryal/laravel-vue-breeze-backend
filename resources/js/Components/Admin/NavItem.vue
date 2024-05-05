@@ -65,18 +65,30 @@ const hasActiveChild = computed(() => {
 
                     <ChevronDownIcon
                         :class="[
-                            'h-4 w-4 text-gray-600 dark:text-white',
+                            'h-4 w-4 text-gray-600 transition-transform duration-200 ease-linear dark:text-white',
                             open ? 'rotate-180' : '',
                         ]"
                     />
                 </DisclosureButton>
-                <DisclosurePanel>
-                    <ul class="space-y-1 py-2">
-                        <li v-for="child in item.children" :key="child.label">
-                            <NavItem :item="child" />
-                        </li>
-                    </ul>
-                </DisclosurePanel>
+                <transition
+                    enter-active-class="transition duration-300 ease-out"
+                    enter-from-class="transform -translate-y-6 opacity-0"
+                    enter-to-class="transform translate-y-0 opacity-100"
+                    leave-active-class="transition duration-300 ease-in"
+                    leave-from-class="transform translate-y-0 opacity-100"
+                    leave-to-class="transform -translate-y-6 opacity-0"
+                >
+                    <DisclosurePanel>
+                        <ul class="space-y-1 py-2">
+                            <li
+                                v-for="child in item.children"
+                                :key="child.label"
+                            >
+                                <NavItem :item="child" />
+                            </li>
+                        </ul>
+                    </DisclosurePanel>
+                </transition>
             </Disclosure>
         </template>
     </div>
