@@ -15,19 +15,19 @@ defineProps({
 </script>
 
 <template>
-    <Disclosure
-        v-slot="{ open }"
-        :default-open="defaultOpen"
-        v-if="collapsible"
+    <div
+        class="w-full rounded border bg-white text-gray-900 shadow-sm dark:border-gray-800 dark:bg-gray-900 dark:text-gray-100 sm:rounded-lg"
     >
-        <div
-            class="w-full rounded border bg-white shadow-sm dark:border-gray-800 dark:bg-gray-900 sm:rounded-lg"
+        <Disclosure
+            v-slot="{ open }"
+            :default-open="defaultOpen"
+            v-if="collapsible"
         >
             <DisclosureButton
                 class="flex w-full items-center justify-between p-4 focus:outline-none sm:px-6"
             >
                 <header>
-                    <h2 class="font-medium text-gray-900 dark:text-gray-100">
+                    <h2 class="text-lg font-medium">
                         <slot name="title" />
                     </h2>
                     <p
@@ -46,11 +46,11 @@ defineProps({
             </DisclosureButton>
             <transition
                 enter-active-class="transition duration-300 ease-linear"
-                enter-from-class="transform translate-y-0 opacity-0"
+                enter-from-class="transform translate-y-px opacity-0"
                 enter-to-class="transform translate-y-0 opacity-100"
                 leave-active-class="transition duration-300 ease-linear"
                 leave-from-class="transform translate-y-0 opacity-100"
-                leave-to-class="transform translate-y-0 opacity-0"
+                leave-to-class="transform translate-y-px opacity-0"
             >
                 <DisclosurePanel>
                     <div
@@ -60,27 +60,24 @@ defineProps({
                     </div>
                 </DisclosurePanel>
             </transition>
-        </div>
-    </Disclosure>
-    <div
-        v-else
-        class="w-full rounded border bg-white shadow-sm dark:border-gray-800 dark:bg-gray-900 sm:rounded-lg"
-    >
-        <div class="flex w-full items-center justify-between p-4 sm:px-6">
-            <header>
-                <h2 class="font-medium text-gray-900 dark:text-gray-100">
-                    <slot name="title" />
-                </h2>
-                <p
-                    class="mt-1 text-sm text-gray-600 dark:text-gray-400"
-                    v-if="$slots.subtitle"
-                >
-                    <slot name="subtitle" />
-                </p>
-            </header>
-        </div>
-        <div class="w-full border-t p-4 dark:border-gray-700 sm:p-6">
-            <slot />
-        </div>
+        </Disclosure>
+        <template v-else>
+            <div class="w-full p-4 sm:px-6">
+                <header>
+                    <h2 class="text-lg font-medium">
+                        <slot name="title" />
+                    </h2>
+                    <p
+                        class="mt-1 text-sm text-gray-600 dark:text-gray-400"
+                        v-if="$slots.subtitle"
+                    >
+                        <slot name="subtitle" />
+                    </p>
+                </header>
+            </div>
+            <div class="w-full border-t p-4 dark:border-gray-700 sm:p-6">
+                <slot />
+            </div>
+        </template>
     </div>
 </template>
