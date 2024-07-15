@@ -3,9 +3,7 @@ import { ref } from 'vue'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
 import { Head } from '@inertiajs/vue3'
 import ActionCard from '@/Components/Admin/ActionCard.vue'
-// import Editor from '@/Components/Admin/Editor.vue'
-// import QuillEditor from '@/Components/Admin/QuillEditor.vue'
-import TipTapEditor from '@/Components/Admin/TipTapEditor.vue'
+import CKEditor from '@/Components/Admin/CKEditor.vue'
 
 const description = ref('<p>This is default content</p>')
 </script>
@@ -16,7 +14,7 @@ const description = ref('<p>This is default content</p>')
     <AuthenticatedLayout>
         <template #header>
             <h2
-                class="text-xl font-semibold leading-tight text-gray-900 dark:text-gray-200 md:text-3xl"
+                class="text-xl font-semibold leading-tight text-gray-900 md:text-3xl dark:text-gray-200"
             >
                 Dashboard
             </h2>
@@ -27,8 +25,8 @@ const description = ref('<p>This is default content</p>')
                 <ActionCard class="mb-4">
                     <template #title>Editor Panel</template>
                     <div>
-                        <p>TipTap Editor</p>
-                        <TipTapEditor v-model="description" class="mt-1" />
+                        <p>CKEditor Editor</p>
+                        <CKEditor v-model="description" class="mt-1" />
                     </div>
                 </ActionCard>
                 <ActionCard

@@ -13,8 +13,8 @@ class TrixFileUploadController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->file('image')) {
-            $path = $request->image->store('trix-file');
+        if ($request->file('upload')) {
+            $path = $request->upload->store('trix-file');
 
             return response()->json([
                 'url' => '/storage/' . $path
@@ -29,11 +29,11 @@ class TrixFileUploadController extends Controller
      */
     public function destroy(Request $request)
     {
-        if ($request->has('image')) {
-            $image = $request->image;
-            $exists = Storage::exists($image);
+        if ($request->has('file')) {
+            $file = 'trix-file/' . $request->file;
+            $exists = Storage::exists($file);
             if ($exists) {
-                Storage::delete($image);
+                Storage::delete($file);
 
                 return response()->json('Deleted', 200);
             }

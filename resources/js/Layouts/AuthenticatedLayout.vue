@@ -31,7 +31,7 @@ const showingNavigation = ref(false)
             <div class="lg:flex">
                 <div
                     :class="[
-                        'fixed inset-y-0 left-0 z-50 min-h-screen w-80 -translate-x-full transform bg-white transition duration-200 dark:bg-gray-950 lg:sticky lg:translate-x-0 lg:bg-transparent dark:lg:bg-transparent',
+                        'fixed inset-y-0 left-0 z-50 min-h-screen w-80 -translate-x-full transform bg-white transition duration-200 lg:sticky lg:translate-x-0 lg:bg-transparent dark:bg-gray-950 dark:lg:bg-transparent',
                         showingNavigation
                             ? 'translate-x-0'
                             : '-translate-x-full',
@@ -84,7 +84,7 @@ const showingNavigation = ref(false)
 
                 <div class="lg:flex-1">
                     <div
-                        class="sticky top-0 z-30 flex items-center justify-between border-b border-gray-100 bg-white px-2 dark:border-gray-700 dark:bg-gray-900 md:px-6 lg:px-8"
+                        class="sticky top-0 z-30 flex items-center justify-between border-b border-gray-100 bg-white px-2 md:px-6 lg:px-8 dark:border-gray-700 dark:bg-gray-900"
                     >
                         <div class="flex items-center">
                             <!-- Hamburger -->

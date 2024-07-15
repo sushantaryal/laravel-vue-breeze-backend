@@ -26,8 +26,8 @@ const editor = useEditor({
     ],
     editorProps: {
         attributes: {
-            class: 'prose dark:prose-invert focus:outline-none max-w-full'
-        }
+            class: 'prose dark:prose-invert focus:outline-none max-w-full',
+        },
     },
     onUpdate: () => {
         emit('update:modelValue', editor.value.getHTML())
@@ -52,7 +52,7 @@ const linkmodal = ref(null)
 const openingLink = ref(false)
 const anchor = ref({
     href: '',
-    target: false
+    target: false,
 })
 
 onClickOutside(linkmodal, (event) => closeLinkPopup())
@@ -62,13 +62,16 @@ const openLinkPopup = () => {
     if (editor.value.getAttributes('link').href) {
         anchor.value = {
             href: editor.value.getAttributes('link').href,
-            target: editor.value.getAttributes('link').target == '_blank' ? true : false,
+            target:
+                editor.value.getAttributes('link').target == '_blank'
+                    ? true
+                    : false,
         }
     }
 }
 const closeLinkPopup = () => {
     openingLink.value = false
-    anchor.value = {href: '', target: false}
+    anchor.value = { href: '', target: false }
 }
 const setLink = () => {
     if (anchor.value.href === null) {
@@ -83,7 +86,7 @@ const setLink = () => {
         return
     }
 
-    anchor.value.target = anchor.value.target ? '_blank': null
+    anchor.value.target = anchor.value.target ? '_blank' : null
 
     editor.value
         .chain()
@@ -105,8 +108,12 @@ const uploadImage = (e) => {
     if (image) {
         const reader = new FileReader()
         reader.readAsDataURL(image)
-        reader.onload = e => {
-            editor.value.chain().focus().setImage({ src: e.target.result }).run()
+        reader.onload = (e) => {
+            editor.value
+                .chain()
+                .focus()
+                .setImage({ src: e.target.result })
+                .run()
         }
         let form = new FormData()
         form.append('Content-Type', image.type)
@@ -208,7 +215,12 @@ const uploadImage = (e) => {
                 title="Link"
                 aria-labelledby="Link"
             >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z" fill="currentColor"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path
+                        d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"
+                        fill="currentColor"
+                    ></path>
+                </svg>
             </button>
             <!-- Heading 2 -->
             <button
@@ -256,7 +268,12 @@ const uploadImage = (e) => {
                 title="Blockquote"
                 aria-labelledby="Blockquote"
             >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.4167 6.67891C20.4469 7.77257 21.0001 9 21.0001 10.9897C21.0001 14.4891 18.5436 17.6263 14.9695 19.1768L14.0768 17.7992C17.4121 15.9946 18.0639 13.6539 18.3245 12.178C17.7875 12.4557 17.0845 12.5533 16.3954 12.4895C14.591 12.3222 13.1689 10.8409 13.1689 9C13.1689 7.067 14.7359 5.5 16.6689 5.5C17.742 5.5 18.7681 5.99045 19.4167 6.67891ZM9.41669 6.67891C10.4469 7.77257 11.0001 9 11.0001 10.9897C11.0001 14.4891 8.54359 17.6263 4.96951 19.1768L4.07682 17.7992C7.41206 15.9946 8.06392 13.6539 8.32447 12.178C7.78747 12.4557 7.08452 12.5533 6.39539 12.4895C4.59102 12.3222 3.16895 10.8409 3.16895 9C3.16895 7.067 4.73595 5.5 6.66895 5.5C7.742 5.5 8.76814 5.99045 9.41669 6.67891Z" fill="currentColor"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path
+                        d="M19.4167 6.67891C20.4469 7.77257 21.0001 9 21.0001 10.9897C21.0001 14.4891 18.5436 17.6263 14.9695 19.1768L14.0768 17.7992C17.4121 15.9946 18.0639 13.6539 18.3245 12.178C17.7875 12.4557 17.0845 12.5533 16.3954 12.4895C14.591 12.3222 13.1689 10.8409 13.1689 9C13.1689 7.067 14.7359 5.5 16.6689 5.5C17.742 5.5 18.7681 5.99045 19.4167 6.67891ZM9.41669 6.67891C10.4469 7.77257 11.0001 9 11.0001 10.9897C11.0001 14.4891 8.54359 17.6263 4.96951 19.1768L4.07682 17.7992C7.41206 15.9946 8.06392 13.6539 8.32447 12.178C7.78747 12.4557 7.08452 12.5533 6.39539 12.4895C4.59102 12.3222 3.16895 10.8409 3.16895 9C3.16895 7.067 4.73595 5.5 6.66895 5.5C7.742 5.5 8.76814 5.99045 9.41669 6.67891Z"
+                        fill="currentColor"
+                    ></path>
+                </svg>
             </button>
             <!-- CodeBlock -->
             <button
@@ -319,8 +336,22 @@ const uploadImage = (e) => {
             </button>
             <!-- Image -->
             <label title="Image" aria-labelledby="Image">
-                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 11.1005L7 9.1005L12.5 14.6005L16 11.1005L19 14.1005V5H5V11.1005ZM4 3H20C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3ZM15.5 10C14.6716 10 14 9.32843 14 8.5C14 7.67157 14.6716 7 15.5 7C16.3284 7 17 7.67157 17 8.5C17 9.32843 16.3284 10 15.5 10Z" fill="currentColor"></path></svg>
-                <input type="file" accept="image/*" @change="uploadImage" class="hidden" />
+                <svg
+                    class="h-6 w-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        d="M5 11.1005L7 9.1005L12.5 14.6005L16 11.1005L19 14.1005V5H5V11.1005ZM4 3H20C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3ZM15.5 10C14.6716 10 14 9.32843 14 8.5C14 7.67157 14.6716 7 15.5 7C16.3284 7 17 7.67157 17 8.5C17 9.32843 16.3284 10 15.5 10Z"
+                        fill="currentColor"
+                    ></path>
+                </svg>
+                <input
+                    type="file"
+                    accept="image/*"
+                    @change="uploadImage"
+                    class="hidden"
+                />
             </label>
             <!-- Undo -->
             <button
@@ -356,8 +387,9 @@ const uploadImage = (e) => {
         <!-- Popups -->
         <div
             ref="linkmodal"
-            class="absolute left-0 top-12 z-10 w-full max-w-xl transform rounded border bg-gray-50 p-2 drop-shadow-lg shadow-lg dark:border-gray-900 dark:bg-gray-800"
-            v-if="openingLink">
+            class="absolute left-0 top-12 z-10 w-full max-w-xl transform rounded border bg-gray-50 p-2 shadow-lg drop-shadow-lg dark:border-gray-900 dark:bg-gray-800"
+            v-if="openingLink"
+        >
             <div class="flex flex-col">
                 <label for="anchorlink" class="text-sm">URL</label>
                 <input
@@ -368,8 +400,12 @@ const uploadImage = (e) => {
                     placeholder="Enter a URL..."
                     @keydown.enter.prevent="setLink"
                 />
-                <label class="inline-block text-sm mt-2">
-                    <input type="checkbox" v-model="anchor.target" class="rounded" />
+                <label class="mt-2 inline-block text-sm">
+                    <input
+                        type="checkbox"
+                        v-model="anchor.target"
+                        class="rounded"
+                    />
                     Open link in new tab
                 </label>
             </div>
@@ -395,16 +431,15 @@ const uploadImage = (e) => {
             </div>
         </div>
         <!-- Main Editor -->
-        <editor-content
-            :editor="editor"
-        />
+        <editor-content :editor="editor" />
     </div>
 </template>
 <style lang="scss">
 .tiptap-toolbar {
     @apply mx-2 mb-1 mt-2 flex items-center space-x-1 overflow-x-auto whitespace-nowrap rounded-t-md border-none border-gray-200 p-0 pb-1;
 
-    button, label {
+    button,
+    label {
         @apply cursor-pointer rounded-md p-1 text-gray-700 focus:outline-none focus-visible:outline-none focus-visible:ring-1;
 
         &[disabled] {
@@ -426,7 +461,8 @@ const uploadImage = (e) => {
 }
 
 .dark .tiptap-toolbar {
-    button, label {
+    button,
+    label {
         @apply text-gray-200;
 
         &[disabled] {
@@ -464,7 +500,7 @@ const uploadImage = (e) => {
         max-width: 50%;
         height: auto;
         &.ProseMirror-selectednode {
-          outline: 3px solid #68CEF8;
+            outline: 3px solid #68cef8;
         }
     }
 

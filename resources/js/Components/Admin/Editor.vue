@@ -116,7 +116,7 @@ const uploadAttachment = (event) => {
     if (file) {
         let form = new FormData()
         form.append('Content-Type', file.type)
-        form.append('image', file)
+        form.append('upload', file)
 
         let xhr = new XMLHttpRequest()
         xhr.open('POST', route('admin.trix.store'), true)
@@ -145,11 +145,11 @@ const deleteAttachment = (event) => {
     let attachment = event.attachment
 
     let url = attachment.attachment.attributes.values.url.split('/')
-    let previewURL = `${url[2]}/${url[3]}`
+    let previewURL = `${url[3]}`
 
     if (previewURL) {
         let form = new FormData()
-        form.append('image', previewURL)
+        form.append('file', previewURL)
 
         let xhr = new XMLHttpRequest()
         xhr.open('POST', route('admin.trix.destroy'), true)

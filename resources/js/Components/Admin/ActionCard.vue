@@ -16,7 +16,7 @@ defineProps({
 
 <template>
     <div
-        class="w-full rounded border bg-white text-gray-900 shadow-sm dark:border-gray-800 dark:bg-gray-900 dark:text-gray-100 sm:rounded-lg"
+        class="w-full rounded border bg-white text-gray-900 shadow-sm sm:rounded-lg dark:border-gray-800 dark:bg-gray-900 dark:text-gray-100"
     >
         <Disclosure
             v-slot="{ open }"
@@ -54,7 +54,7 @@ defineProps({
             >
                 <DisclosurePanel>
                     <div
-                        class="w-full border-t p-4 dark:border-gray-700 sm:p-6"
+                        class="w-full border-t p-4 sm:p-6 dark:border-gray-700"
                     >
                         <slot />
                     </div>
@@ -75,7 +75,7 @@ defineProps({
                     </p>
                 </header>
             </div>
-            <div class="w-full border-t p-4 dark:border-gray-700 sm:p-6">
+            <div class="w-full border-t p-4 sm:p-6 dark:border-gray-700">
                 <slot />
             </div>
         </template>
