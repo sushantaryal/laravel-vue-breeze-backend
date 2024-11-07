@@ -1,6 +1,6 @@
 <script setup>
-import { ref, computed } from 'vue'
-import { component as CKEditor } from '@ckeditor/ckeditor5-vue'
+import { computed } from 'vue'
+import { Ckeditor } from '@ckeditor/ckeditor5-vue'
 import {
     ClassicEditor,
     Essentials,
@@ -198,11 +198,11 @@ const editorConfig = {
 </script>
 <template>
     <div class="prose dark:prose-invert max-w-full">
-        <CKEditor
+        <Ckeditor
             :editor="editor"
             v-model="editorData"
             :config="editorConfig"
-        ></CKEditor>
+        ></Ckeditor>
     </div>
 </template>
 

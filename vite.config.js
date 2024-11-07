@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
-import vue from '@vitejs/plugin-vue';
+import { defineConfig } from 'vite'
+import laravel from 'laravel-vite-plugin'
+import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
     define: {
@@ -8,7 +8,11 @@ export default defineConfig({
     },
     plugins: [
         laravel({
-            input: ['resources/js/app.js', 'resources/css/admin.css', 'resources/css/app.css'],
+            input: [
+                'resources/js/app.js',
+                'resources/css/admin.css',
+                'resources/css/app.css',
+            ],
             refresh: true,
         }),
         vue({
@@ -23,4 +27,21 @@ export default defineConfig({
             },
         }),
     ],
-});
+    build: {
+        rollupOptions: {
+            output: {
+                manualChunks: {
+                    ckeditor: ['@ckeditor/ckeditor5-vue', 'ckeditor5'],
+                    tiptap: [
+                        '@tiptap/extension-image',
+                        '@tiptap/extension-link',
+                        '@tiptap/extension-underline',
+                        '@tiptap/starter-kit',
+                        '@tiptap/vue-3',
+                    ],
+                },
+            },
+        },
+        chunkSizeWarningLimit: 1500,
+    },
+})

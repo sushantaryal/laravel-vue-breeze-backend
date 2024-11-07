@@ -1,5 +1,5 @@
 import defaultTheme from 'tailwindcss/defaultTheme'
-const colors = require('tailwindcss/colors')
+import colors from 'tailwindcss/colors'
 import forms from '@tailwindcss/forms'
 import typography from '@tailwindcss/typography'
 

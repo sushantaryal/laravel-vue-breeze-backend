@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\URL;
@@ -11,7 +10,7 @@ test('email verification screen can be rendered', function () {
         'email_verified_at' => null,
     ]);
 
-    $response = $this->actingAs($user)->get('/verify-email');
+    $response = $this->actingAs($user)->get('/admin/verify-email');
 
     $response->assertStatus(200);
 });
@@ -24,7 +23,7 @@ test('email can be verified', function () {
     Event::fake();
 
     $verificationUrl = URL::temporarySignedRoute(
-        'verification.verify',
+        'admin.verification.verify',
         now()->addMinutes(60),
         ['id' => $user->id, 'hash' => sha1($user->email)]
     );
@@ -33,7 +32,7 @@ test('email can be verified', function () {
 
     Event::assertDispatched(Verified::class);
     expect($user->fresh()->hasVerifiedEmail())->toBeTrue();
-    $response->assertRedirect(RouteServiceProvider::HOME.'?verified=1');
+    $response->assertRedirect(route('admin.dashboard', absolute: false) . '?verified=1');
 });
 
 test('email is not verified with invalid hash', function () {
@@ -42,7 +41,7 @@ test('email is not verified with invalid hash', function () {
     ]);
 
     $verificationUrl = URL::temporarySignedRoute(
-        'verification.verify',
+        'admin.verification.verify',
         now()->addMinutes(60),
         ['id' => $user->id, 'hash' => sha1('wrong-email')]
     );

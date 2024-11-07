@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Inertia\Middleware;
-use Tightenco\Ziggy\Ziggy;
+use Tighten\Ziggy\Ziggy;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -18,7 +18,7 @@ class HandleInertiaRequests extends Middleware
     /**
      * Determine the current asset version.
      */
-    public function version(Request $request): string|null
+    public function version(Request $request): ?string
     {
         return $this->rootView . parent::version($request);
     }
@@ -47,10 +47,8 @@ class HandleInertiaRequests extends Middleware
      * Sets the root template that's loaded on the first page visit.
      *
      * @see https://inertiajs.com/server-side-setup#root-template
-     *
-     * @return string
      */
-    public function rootView(Request $request)
+    public function rootView(Request $request): string
     {
         if ($request->route()->getPrefix() === 'admin') {
             return 'admin';

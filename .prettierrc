@@ -1,7 +1,22 @@
 {
-    "plugins": ["prettier-plugin-tailwindcss"],
+    "plugins": ["prettier-plugin-blade", "prettier-plugin-tailwindcss"],
     "bracketSpacing": true,
     "trailingComma": "all",
     "semi": false,
-    "singleQuote": true
+    "singleQuote": true,
+    "tabWidth": 4,
+    "overrides": [
+        {
+            "files": ["*.yml", "*.yaml"],
+            "options": {
+                "tabWidth": 2
+            }
+        },
+        {
+            "files": ["*.blade.php"],
+            "options": {
+                "parser": "blade"
+            }
+        }
+    ]
 }
